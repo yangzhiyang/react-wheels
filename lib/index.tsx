@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from './button';
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <Button />,
   document.getElementById('root')
 )
