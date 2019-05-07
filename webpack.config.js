@@ -7,7 +7,7 @@ module.exports = {
     index: './lib/index.tsx'
   },
   output: {
-    path: path.resolve(__dirname + 'dist/lib'),
+    path: path.resolve(__dirname, 'dist/lib'),
     library: 'react-wheels',
     libraryTarget: 'umd'
   },
