@@ -1,3 +1,7 @@
-const div = document.createElement('div');
-div.innerText = 'React-wheels';
-document.body.appendChild(div);
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('root')
+)
