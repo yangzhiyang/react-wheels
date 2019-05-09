@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './helpers/classes';
+import classes from '../helpers/classes';
 import './importIcons';
 import './icon.scss';
 
@@ -18,4 +18,4 @@ const Icon: React.FunctionComponent<IconProps> = ({className, name, ...restProps
   );
 }
 
-export default Icon;  
+export default Icon;
