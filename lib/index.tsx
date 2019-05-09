@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Button from './button';
+import ReactDom from 'react-dom';
+import Icon from './Icon';
 
-ReactDOM.render(
-  <Button />,
-  document.getElementById('root')
-)
+ReactDom.render(
+  <div>
+    <Icon name="alipay" />
+  </div>,
+  document.querySelector('#root'));
