@@ -8,7 +8,7 @@ const fn: React.MouseEventHandler = (e) => {
 
 ReactDom.render(
   <div>
-    <Icon name="alipay" onClick={fn} />
+    <Icon name="alipay" onClick={fn} onMouseEnter={() => {console.log('enter')}} />
     <Icon name="wechat" onClick={fn} />
     <Icon name="qq" onClick={fn} />
   </div>,
