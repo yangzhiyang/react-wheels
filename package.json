@@ -1,6 +1,9 @@
 {
   "name": "react-wheels",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "files": [
+    "/dist/**/*"
+  ],
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -50,6 +53,7 @@
   },
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-wheels": "^0.0.1"
   }
 }
