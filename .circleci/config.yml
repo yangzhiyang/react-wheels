@@ -44,7 +44,7 @@ jobs:
       - run: yarn ci
       - store_test_results:
           path: test-results
-  pubilsh:
+  publish:
     <<: *defaults
     steps:
       - attach_workspace:
