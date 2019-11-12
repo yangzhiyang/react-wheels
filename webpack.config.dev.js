@@ -8,7 +8,7 @@ module.exports = Object.assign({}, base, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'React-wheels',
+      title: 'Wheels',
       template: 'example.html'
     })
   ],
