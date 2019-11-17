@@ -1,4 +1,5 @@
 import React, { Fragment, ReactElement, MouseEventHandler } from "react";
+import ReactDom from "react-dom";
 
 import Icon from "../icon";
 import { scopedClassMaker } from "../helpers/classes";
@@ -28,7 +29,7 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
       onClose(e);
     }
   };
-  return visible ? (
+  const result = visible ? (
     <Fragment>
       <div className={sc("mask")} onClick={onClickMask}></div>
       <div className={sc()}>
@@ -45,6 +46,7 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
       </div>
     </Fragment>
   ) : null;
+  return ReactDom.createPortal(result, document.body);
 };
 Dialog.defaultProps = {
   closeOnClickMask: false
