@@ -1,0 +1,63 @@
+@import '../theme';
+
+.wheels-dialog {
+  position: fixed;
+  background: #FFF;
+  min-width: 15em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: fade-out($color: #000000, $amount: 0.5)
+  }
+
+  &-header {
+    font-size: 22px;
+    padding: 8px 16px;
+    border-bottom: 1px solid gray;
+  }
+
+  &-main {
+    min-height: 6em;
+  }
+
+  &-footer {
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 8px;
+
+    button {
+      margin: 0 4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-close {
+    position: fixed;
+    bottom: 100%;
+    left: 100%;
+    background: $main-color;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+  }
+}
