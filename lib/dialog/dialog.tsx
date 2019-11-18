@@ -71,5 +71,36 @@ const alert = (content: string) => {
   ReactDom.render(component, div);
 };
 
-export { alert };
+const confirm = (content: string, ok?: () => void, cancel?: () => void) => {
+  const div = document.createElement("div");
+  document.body.append(div);
+
+  const onOk = () => {
+    ReactDom.render(React.cloneElement(component, { visible: false }), div);
+    ReactDom.unmountComponentAtNode(div);
+    div.remove();
+    ok && ok();
+  };
+  const onCancel = () => {
+    ReactDom.render(React.cloneElement(component, { visible: false }), div);
+    ReactDom.unmountComponentAtNode(div);
+    div.remove();
+    cancel && cancel();
+  };
+  const component = (
+    <Dialog
+      visible={true}
+      onClose={onCancel}
+      buttons={[
+        <button onClick={onOk}>ok</button>,
+        <button onClick={onCancel}>cancel</button>
+      ]}
+    >
+      {content}
+    </Dialog>
+  );
+  ReactDom.render(component, div);
+};
+
+export { alert, confirm };
 export default Dialog;
