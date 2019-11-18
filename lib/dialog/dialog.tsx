@@ -8,7 +8,7 @@ import "./dialog.scss";
 
 interface dialogProps {
   visible: boolean;
-  buttons: Array<ReactElement>;
+  buttons?: Array<ReactElement>;
   onClose: MouseEventHandler;
   closeOnClickMask?: boolean;
 }
@@ -29,7 +29,7 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
       onClose(e);
     }
   };
-  const result = visible ? (
+  const dialog = visible ? (
     <Fragment>
       <div className={sc("mask")} onClick={onClickMask}></div>
       <div className={sc()}>
@@ -39,16 +39,37 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
         <header className={sc("header")}>提示</header>
         <main className={sc("main")}>{children}</main>
         <footer className={sc("footer")}>
-          {buttons.map((button, index) =>
-            React.cloneElement(button, { key: index })
-          )}
+          {buttons &&
+            buttons.map((button, index) =>
+              React.cloneElement(button, { key: index })
+            )}
         </footer>
       </div>
     </Fragment>
   ) : null;
-  return ReactDom.createPortal(result, document.body);
+  return ReactDom.createPortal(dialog, document.body);
 };
 Dialog.defaultProps = {
   closeOnClickMask: false
 };
+
+const alert = (content: string) => {
+  const div = document.createElement("div");
+  document.body.append(div);
+  const component = (
+    <Dialog
+      visible={true}
+      onClose={() => {
+        ReactDom.render(React.cloneElement(component, { visible: false }), div);
+        ReactDom.unmountComponentAtNode(div);
+        div.remove();
+      }}
+    >
+      {content}
+    </Dialog>
+  );
+  ReactDom.render(component, div);
+};
+
+export { alert };
 export default Dialog;
