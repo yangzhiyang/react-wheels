@@ -1,4 +1,10 @@
-import React, { Fragment, ReactElement, MouseEventHandler } from "react";
+import React, {
+  Fragment,
+  ReactElement,
+  MouseEventHandler,
+  ReactNode,
+  ReactFragment
+} from "react";
 import ReactDom from "react-dom";
 
 import Icon from "../icon";
@@ -38,12 +44,13 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
         </div>
         <header className={sc("header")}>提示</header>
         <main className={sc("main")}>{children}</main>
-        <footer className={sc("footer")}>
-          {buttons &&
-            buttons.map((button, index) =>
+        {buttons && buttons.length > 0 && (
+          <footer className={sc("footer")}>
+            {buttons.map((button, index) =>
               React.cloneElement(button, { key: index })
             )}
-        </footer>
+          </footer>
+        )}
       </div>
     </Fragment>
   ) : null;
@@ -56,14 +63,18 @@ Dialog.defaultProps = {
 const alert = (content: string) => {
   const div = document.createElement("div");
   document.body.append(div);
+
+  const onClose = () => {
+    ReactDom.render(React.cloneElement(component, { visible: false }), div);
+    ReactDom.unmountComponentAtNode(div);
+    div.remove();
+  };
+
   const component = (
     <Dialog
       visible={true}
-      onClose={() => {
-        ReactDom.render(React.cloneElement(component, { visible: false }), div);
-        ReactDom.unmountComponentAtNode(div);
-        div.remove();
-      }}
+      onClose={onClose}
+      buttons={[<button onClick={onClose}>ok</button>]}
     >
       {content}
     </Dialog>
@@ -74,23 +85,23 @@ const alert = (content: string) => {
 const confirm = (content: string, ok?: () => void, cancel?: () => void) => {
   const div = document.createElement("div");
   document.body.append(div);
-
-  const onOk = () => {
+  const onClose = () => {
     ReactDom.render(React.cloneElement(component, { visible: false }), div);
     ReactDom.unmountComponentAtNode(div);
     div.remove();
+  };
+  const onOk = () => {
+    onClose();
     ok && ok();
   };
   const onCancel = () => {
-    ReactDom.render(React.cloneElement(component, { visible: false }), div);
-    ReactDom.unmountComponentAtNode(div);
-    div.remove();
+    onClose();
     cancel && cancel();
   };
   const component = (
     <Dialog
       visible={true}
-      onClose={onCancel}
+      onClose={onClose}
       buttons={[
         <button onClick={onOk}>ok</button>,
         <button onClick={onCancel}>cancel</button>
@@ -102,5 +113,22 @@ const confirm = (content: string, ok?: () => void, cancel?: () => void) => {
   ReactDom.render(component, div);
 };
 
-export { alert, confirm };
+const modal = (content: ReactNode | ReactFragment) => {
+  const onClose = () => {
+    ReactDom.render(React.cloneElement(component, { visible: false }), div);
+    ReactDom.unmountComponentAtNode(div);
+    div.remove();
+  };
+  const component = (
+    <Dialog visible={true} onClose={onClose}>
+      {content}
+    </Dialog>
+  );
+  const div = document.createElement("div");
+  document.body.append(div);
+  ReactDom.render(component, div);
+  return onClose;
+};
+
+export { alert, confirm, modal };
 export default Dialog;
