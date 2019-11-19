@@ -2,8 +2,7 @@ import React, {
   Fragment,
   ReactElement,
   MouseEventHandler,
-  ReactNode,
-  ReactFragment
+  ReactNode
 } from "react";
 import ReactDom from "react-dom";
 
@@ -60,7 +59,11 @@ Dialog.defaultProps = {
   closeOnClickMask: false
 };
 
-const alert = (content: string) => {
+const modal = (
+  content: ReactNode,
+  buttons?: Array<ReactElement>,
+  afterClose?: () => void
+) => {
   const div = document.createElement("div");
   document.body.append(div);
 
@@ -73,61 +76,38 @@ const alert = (content: string) => {
   const component = (
     <Dialog
       visible={true}
-      onClose={onClose}
-      buttons={[<button onClick={onClose}>ok</button>]}
+      onClose={() => {
+        onClose();
+        afterClose && afterClose();
+      }}
+      buttons={buttons}
     >
       {content}
     </Dialog>
   );
   ReactDom.render(component, div);
+  return onClose;
+};
+
+const alert = (content: string) => {
+  const button = <button onClick={() => close()}>ok</button>;
+  const close = modal(content, [button]);
 };
 
 const confirm = (content: string, ok?: () => void, cancel?: () => void) => {
-  const div = document.createElement("div");
-  document.body.append(div);
-  const onClose = () => {
-    ReactDom.render(React.cloneElement(component, { visible: false }), div);
-    ReactDom.unmountComponentAtNode(div);
-    div.remove();
-  };
   const onOk = () => {
-    onClose();
+    close();
     ok && ok();
   };
   const onCancel = () => {
-    onClose();
+    close();
     cancel && cancel();
   };
-  const component = (
-    <Dialog
-      visible={true}
-      onClose={onClose}
-      buttons={[
-        <button onClick={onOk}>ok</button>,
-        <button onClick={onCancel}>cancel</button>
-      ]}
-    >
-      {content}
-    </Dialog>
-  );
-  ReactDom.render(component, div);
-};
-
-const modal = (content: ReactNode | ReactFragment) => {
-  const onClose = () => {
-    ReactDom.render(React.cloneElement(component, { visible: false }), div);
-    ReactDom.unmountComponentAtNode(div);
-    div.remove();
-  };
-  const component = (
-    <Dialog visible={true} onClose={onClose}>
-      {content}
-    </Dialog>
-  );
-  const div = document.createElement("div");
-  document.body.append(div);
-  ReactDom.render(component, div);
-  return onClose;
+  const buttons = [
+    <button onClick={onOk}>ok</button>,
+    <button onClick={onCancel}>cancel</button>
+  ];
+  const close = modal(content, buttons);
 };
 
 export { alert, confirm, modal };
