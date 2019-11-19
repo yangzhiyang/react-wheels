@@ -16,6 +16,7 @@ interface dialogProps {
   buttons?: Array<ReactElement>;
   onClose: MouseEventHandler;
   closeOnClickMask?: boolean;
+  enableMask?: boolean;
 }
 const scopedClass = scopedClassMaker("wheels-dialog");
 const sc = scopedClass;
@@ -36,7 +37,7 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
   };
   const dialog = visible ? (
     <Fragment>
-      <div className={sc("mask")} onClick={onClickMask}></div>
+      {enableMask && <div className={sc("mask")} onClick={onClickMask}></div>}
       <div className={sc()}>
         <div className={sc("close")} onClick={onClickClose}>
           <Icon name="close" />
@@ -54,9 +55,6 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
     </Fragment>
   ) : null;
   return ReactDom.createPortal(dialog, document.body);
-};
-Dialog.defaultProps = {
-  closeOnClickMask: false
 };
 
 const modal = (
@@ -108,6 +106,11 @@ const confirm = (content: string, ok?: () => void, cancel?: () => void) => {
     <button onClick={onCancel}>cancel</button>
   ];
   const close = modal(content, buttons);
+};
+
+Dialog.defaultProps = {
+  closeOnClickMask: false,
+  enableMask: true
 };
 
 export { alert, confirm, modal };
