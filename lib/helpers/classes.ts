@@ -11,26 +11,19 @@ interface ClassToggles {
 }
 
 function scopedClassMaker(prefix: string) {
-  return function(name?: string | ClassToggles, options?: Options) {
-    let name2;
-    let result;
-    if (typeof name === "string" || name === undefined) {
-      name2 = name;
-      result = [prefix, name].filter(Boolean).join("-");
-    } else {
-      name2 = Object.entries(name)
-        .filter(kv => kv[1])
-        .map(kv => kv[0]);
-      result = name2.map(n => [prefix, n].filter(Boolean).join("-")).join(" ");
-      console.log(
-        "name2",
-        name2.map(n => [prefix, n].filter(Boolean).join("-"))
-      );
-    }
+  return function(name: string | ClassToggles, options?: Options) {
+    const name2 =
+      typeof name === "string" || name === undefined ? { [name]: name } : name;
+    const scoped = Object.entries(name2)
+      .filter(kv => kv[1])
+      .map(kv => kv[0])
+      .map(name => [prefix, name].filter(Boolean).join("-"))
+      .join(" ");
+
     if (options && options.extra) {
-      return [result, options.extra].filter(Boolean).join(" ");
+      return [scoped, options.extra].filter(Boolean).join(" ");
     } else {
-      return result;
+      return scoped;
     }
   };
 }
