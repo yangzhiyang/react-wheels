@@ -25,7 +25,8 @@ const Dialog: React.FunctionComponent<dialogProps> = ({
   children,
   buttons,
   onClose,
-  closeOnClickMask
+  closeOnClickMask,
+  enableMask
 }) => {
   const onClickClose: MouseEventHandler = e => {
     onClose(e);
