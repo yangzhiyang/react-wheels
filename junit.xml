@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="7" failures="0" time="3.105">
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-11-09T13:01:40" time="1.659" tests="4">
-    <testcase classname="classes 接收一个 classname" name="classes 接收一个 classname" time="0.004">
+<testsuites name="jest tests" tests="7" failures="0" time="2.232">
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-11-19T16:31:00" time="1.284" tests="5">
+    <testcase classname="classes 接收一个 classname" name="classes 接收一个 classname" time="0.003">
     </testcase>
     <testcase classname="classes 接收多个 classname" name="classes 接收多个 classname" time="0">
     </testcase>
-    <testcase classname="classes 接收一个参数为 undefined" name="classes 接收一个参数为 undefined" time="0.001">
+    <testcase classname="classes 接收一个参数为 undefined" name="classes 接收一个参数为 undefined" time="0">
     </testcase>
-    <testcase classname="classes 不传参数" name="classes 不传参数" time="0">
+    <testcase classname="classes 不传参数" name="classes 不传参数" time="0.001">
+    </testcase>
+    <testcase classname="scopedClassMaker 可以传入字符串或对象" name="scopedClassMaker 可以传入字符串或对象" time="0.013">
     </testcase>
   </testsuite>
-  <testsuite name="icon" errors="0" failures="0" skipped="0" timestamp="2019-11-09T13:01:42" time="0.198" tests="2">
+  <testsuite name="icon" errors="0" failures="0" skipped="0" timestamp="2019-11-19T16:31:01" time="0.183" tests="2">
     <testcase classname="icon render successfully" name="icon render successfully" time="0.011">
     </testcase>
-    <testcase classname="icon onClick" name="icon onClick" time="0.033">
-    </testcase>
-  </testsuite>
-  <testsuite name="button test" errors="0" failures="0" skipped="0" timestamp="2019-11-09T13:01:42" time="0.119" tests="1">
-    <testcase classname="button test 是个div" name="button test 是个div" time="0.002">
+    <testcase classname="icon onClick" name="icon onClick" time="0.032">
     </testcase>
   </testsuite>
 </testsuites>
