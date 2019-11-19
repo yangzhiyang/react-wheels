@@ -13,12 +13,10 @@ const Layout: React.FunctionComponent<Props> = ({
   className,
   ...restProps
 }) => {
-  let hasAside = false;
-  React.Children.forEach(children, child => {
-    if ((child as ReactElement).type === Aside) {
-      hasAside = true;
-    }
-  });
+  const childrenAsArrayReactElement = children as Array<ReactElement>;
+  const hasAside =
+    childrenAsArrayReactElement.length &&
+    childrenAsArrayReactElement.some(child => child.type === Aside);
   return (
     <div
       className={sc("", {
