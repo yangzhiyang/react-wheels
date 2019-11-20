@@ -6,12 +6,12 @@
     flex-grow: 1;
   }
 
-  & & {
+  &>& {
     flex-grow: 1;
     flex-direction: row;
   }
 
-  &-hasAside {
+  >&-hasAside {
     flex-direction: row;
 
     .wheels-layout {

@@ -41,7 +41,7 @@ export default () => {
           <Footer className="footer">Footer</Footer>
         </Layout>
       </div>
-      <div>
+      {/* <div>
         <h1>example 4</h1>
         <Layout className="layout">
           <Aside className="aside">Aside</Aside>
@@ -51,7 +51,7 @@ export default () => {
             <Footer className="footer">Footer</Footer>
           </Layout>
         </Layout>
-      </div>
+      </div> */}
     </div>
   );
 };
