@@ -1,0 +1,22 @@
+@import '../theme';
+
+.layout {
+  width: 600px;
+  height: 500px;
+  color: #FFF;
+}
+
+.header,
+.footer {
+  height: 40px;
+  background: $main-color;
+}
+
+.content {
+  background: darken($color: ($main-color), $amount: 10%)
+}
+
+.aside {
+  width: 100px;
+  background: darken($color: ($main-color), $amount: 20%)
+}
