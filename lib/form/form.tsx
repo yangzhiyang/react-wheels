@@ -10,6 +10,7 @@ interface FormProps {
   buttons: ReactFragment;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: (value: FormValue) => void;
+  errors: { [key: string]: Array<string> };
 }
 const Form: React.FunctionComponent<FormProps> = props => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = e => {
@@ -33,6 +34,7 @@ const Form: React.FunctionComponent<FormProps> = props => {
             type={field.input.type}
             onChange={e => onChange(field.name, e.target.value)}
           />
+          <div>{props.errors[field.name]}</div>
         </div>
       ))}
       {props.buttons}
