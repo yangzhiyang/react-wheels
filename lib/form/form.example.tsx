@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Button from "../button/button";
 import { FormValue } from "./form";
 import Form from "./form";
+import Validator from "./validator";
 
 const FormExample: React.FunctionComponent = props => {
   const [formData, setFormData] = useState<FormValue>({
@@ -14,7 +15,14 @@ const FormExample: React.FunctionComponent = props => {
     { name: "password", label: "密码", input: { type: "password" } }
   ]);
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData);
+    const rules = [
+      { key: "username", required: true },
+      { key: "username", minLength: 6, maxLength: 12 },
+      { key: "username", pattern: /^[A-Za-z0-9]+$/ },
+      { key: "password", required: true }
+    ];
+    const errors = Validator(formData, rules);
+    console.log(errors);
   };
   return (
     <Form
