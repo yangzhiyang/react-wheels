@@ -7,6 +7,8 @@ import React, {
 import ReactDom from "react-dom";
 
 import Icon from "../icon";
+import Button from "../button/button";
+
 import { scopedClassMaker } from "../helpers/classes";
 
 import "./dialog.scss";
@@ -89,7 +91,7 @@ const modal = (
 };
 
 const alert = (content: string) => {
-  const button = <button onClick={() => close()}>ok</button>;
+  const button = <Button onClick={() => close()}>ok</Button>;
   const close = modal(content, [button]);
 };
 
@@ -103,8 +105,8 @@ const confirm = (content: string, ok?: () => void, cancel?: () => void) => {
     cancel && cancel();
   };
   const buttons = [
-    <button onClick={onOk}>ok</button>,
-    <button onClick={onCancel}>cancel</button>
+    <Button onClick={onOk}>ok</Button>,
+    <Button onClick={onCancel}>cancel</Button>
   ];
   const close = modal(content, buttons);
 };

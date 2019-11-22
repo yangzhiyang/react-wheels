@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FunctionComponent<ButtonProps> = ({
   className,
   children,
+  disabled,
   buttonType = "normal",
   ...restProps
 }) => (
@@ -16,6 +17,7 @@ const Button: FunctionComponent<ButtonProps> = ({
     className={classes(
       "wheels-button",
       `wheels-button-${buttonType}`,
+      disabled ? `wheels-button-disabled` : "",
       className
     )}
     {...restProps}

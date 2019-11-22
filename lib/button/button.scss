@@ -4,7 +4,11 @@
   padding: 4px 16px;
   line-height: 22px;
   transition: all 250ms;
+  margin-right: 8px;
+  margin-bottom: 12px;
   cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
 
   &:focus {
     outline: none;
