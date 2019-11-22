@@ -7,6 +7,7 @@ import IconExample from "./lib/icon/icon.example";
 import ButtonExample from "./lib/button/button.example";
 import DialogExample from "./lib/dialog/dialog.example";
 import LayoutExample from "./lib/layout/layout.example";
+import FormExample from "./lib/form/form.example";
 
 import "./example.scss";
 
@@ -34,6 +35,9 @@ const page = (
             <li>
               <NavLink to="/layout">Layout</NavLink>
             </li>
+            <li>
+              <NavLink to="/form">Form</NavLink>
+            </li>
           </ul>
         </Aside>
         <Content className="site-main">
@@ -41,6 +45,7 @@ const page = (
           <Route path="/button" component={ButtonExample}></Route>
           <Route path="/dialog" component={DialogExample}></Route>
           <Route path="/layout" component={LayoutExample}></Route>
+          <Route path="/form" component={FormExample}></Route>
         </Content>
       </Layout>
       <Footer className="site-footer">@冬霖yzy</Footer>
