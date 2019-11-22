@@ -25,9 +25,9 @@ const page = (
             <li>
               <NavLink to="/icon">Icon</NavLink>
             </li>
-            {/* <li>
+            <li>
               <NavLink to="/button">Button</NavLink>
-            </li> */}
+            </li>
             <li>
               <NavLink to="/dialog">Dialog</NavLink>
             </li>

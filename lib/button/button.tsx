@@ -1,14 +1,26 @@
 import React, { ButtonHTMLAttributes, FunctionComponent } from "react";
+import classes from "../helpers/classes";
+
+import "./button.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  content?: string;
-  primary?: boolean;
+  buttonType?: "important" | "danger" | "normal";
 }
-
-const Button: FunctionComponent<ButtonProps> = props => (
-  <button {...props}>
-    {props.content}
-    {props.children}
+const Button: FunctionComponent<ButtonProps> = ({
+  className,
+  children,
+  buttonType = "normal",
+  ...restProps
+}) => (
+  <button
+    className={classes(
+      "wheels-button",
+      `wheels-button-${buttonType}`,
+      className
+    )}
+    {...restProps}
+  >
+    {children}
   </button>
 );
 
