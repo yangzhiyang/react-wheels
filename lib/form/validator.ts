@@ -27,12 +27,12 @@ const Validator = (formData: FormValue, formRules: FormRules): Errors => {
       }
     }
     if (rule.minLength) {
-      if (isEmpty(value) && value.length < rule.minLength) {
+      if (!isEmpty(value) && value.length < rule.minLength) {
         addError(rule.key, `${rule.key}长度不得小于${rule.minLength}`);
       }
     }
     if (rule.maxLength) {
-      if (isEmpty(value) && value.length > rule.maxLength) {
+      if (!isEmpty(value) && value.length > rule.maxLength) {
         addError(rule.key, `${rule.key}长度不得超过${rule.maxLength}`);
       }
     }
