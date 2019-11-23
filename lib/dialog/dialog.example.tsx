@@ -15,9 +15,9 @@ export default function() {
   return (
     <div>
       <Button onClick={() => setVisible(!visible)}>点我</Button>
-      <Button onClick={() => alert("hi")}>点我alert</Button>
-      <Button onClick={() => confirm("hi")}>点我confirm</Button>
-      <Button onClick={openModal}>点我confirm</Button>
+      <Button onClick={() => alert("hi")}>点我展示alert</Button>
+      <Button onClick={() => confirm("hi")}>点我展示confirm</Button>
+      <Button onClick={openModal}>点我展示modal</Button>
       <Dialog
         visible={visible}
         buttons={[
