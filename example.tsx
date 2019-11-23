@@ -41,12 +41,13 @@ const page = (
           </ul>
         </Aside>
         <Content className="site-main">
-          <Route path="/" component={IconDemo}></Route>
-          <Route path="/icon" component={IconDemo}></Route>
-          <Route path="/button" component={ButtonDemo}></Route>
-          <Route path="/dialog" component={DialogDemo}></Route>
-          <Route path="/layout" component={LayoutDemo}></Route>
-          <Route path="/form" component={FormDemo}></Route>
+          <Route path="/" component={IconDemo}>
+            <Route path="/icon" component={IconDemo}></Route>
+            <Route path="/button" component={ButtonDemo}></Route>
+            <Route path="/dialog" component={DialogDemo}></Route>
+            <Route path="/layout" component={LayoutDemo}></Route>
+            <Route path="/form" component={FormDemo}></Route>
+          </Route>
         </Content>
       </Layout>
       <Footer className="site-footer">@冬霖yzy</Footer>
