@@ -1,5 +1,8 @@
 import React, { ReactFragment } from "react";
 
+import Input from "../input/input";
+import "./form.scss";
+
 interface FormValue {
   [k: string]: any;
 }
@@ -26,18 +29,36 @@ const Form: React.FunctionComponent<FormProps> = props => {
   };
   return (
     <form onSubmit={onSubmit}>
-      {props.fields.map(field => (
-        <div key={field.name}>
-          {field.label}
-          <input
-            value={props.value[field.name]}
-            type={field.input.type}
-            onChange={e => onChange(field.name, e.target.value)}
-          />
-          <div>{props.errors[field.name]}</div>
-        </div>
-      ))}
-      {props.buttons}
+      <table className="wheels-form-table">
+        <tbody>
+          {props.fields.map(field => (
+            <tr key={field.name} className="wheels-form-tr">
+              <td className="wheels-form-td">
+                <span className="wheels-form-label">{field.label}</span>
+              </td>
+              <td className="wheels-form-td">
+                <Input
+                  className="wheels-form-input"
+                  value={props.value[field.name]}
+                  type={field.input.type}
+                  onChange={e => onChange(field.name, e.target.value)}
+                />
+                <div className="wheels-form-error">
+                  {props.errors[field.name] ? (
+                    props.errors[field.name].join("，")
+                  ) : (
+                    <span>&nbsp;</span>
+                  )}
+                </div>
+              </td>
+            </tr>
+          ))}
+          <tr className="wheels-form-tr">
+            <td className="wheels-form-td" />
+            <td className="wheels-form-td">{props.buttons}</td>
+          </tr>
+        </tbody>
+      </table>
     </form>
   );
 };

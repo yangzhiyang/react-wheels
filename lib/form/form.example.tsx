@@ -30,7 +30,7 @@ const FormExample: React.FunctionComponent = props => {
       value={formData}
       fields={fields}
       buttons={[
-        <Button type="submit" key="submit">
+        <Button type="submit" key="submit" buttonType="important">
           提交
         </Button>,
         <Button key="back">返回</Button>
